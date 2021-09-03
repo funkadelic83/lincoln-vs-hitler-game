@@ -24,7 +24,9 @@ public class AnimationTags
     public const string SPECIAL_MOVE_1_VICTIM = "S1Victim";
     public const string VICTORY_DANCE = "VictoryDance";
 
-
+    public const string ATTACK_1_TRIGGER = "Punch1";
+    public const string ATTACK_2_TRIGGER = "Kick2";
+    public const string ATTACK_3_TRIGGER = "Kick3";
 }
 
 public class Axis

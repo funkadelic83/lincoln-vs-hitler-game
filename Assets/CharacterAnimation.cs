@@ -96,6 +96,24 @@ public class CharacterAnimation : MonoBehaviour
         anim.SetFloat("velocityY", 0);
     }
 
+    public void EnemyAttack(int attack)
+    {
+    if(attack == 0)
+        {
+            anim.SetTrigger(AnimationTags.ATTACK_1_TRIGGER);
+        }
+
+    if(attack == 1)
+        {
+            anim.SetTrigger(AnimationTags.ATTACK_2_TRIGGER);
+        }
+
+    if(attack == 2)
+        {
+            anim.SetTrigger(AnimationTags.ATTACK_3_TRIGGER); ;
+        }
+    }
+
     //public void Jump()
     //{
     //    anim.SetTrigger(AnimationTags.JUMP_ANIMATION);

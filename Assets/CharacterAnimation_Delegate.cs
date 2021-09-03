@@ -124,6 +124,15 @@ public class CharacterAnimation_Delegate : MonoBehaviour
         left_Leg_Attack_Point.tag = Tags.UNTAGGED_TAG;
     }
 
+    //void faceEnemy()
+    //{
+    //    lookVector = playerTarget
+    //    Quaternion rot = Quaternion.LookRotation(transform.rotation, rot, 1);
+    //}
+
+    //FACE ENEMY AFTER LANDING
+    //Use RotateTowards or LookAt to face the enemy after attacking
+    //Call this function using an animation event
 
 
 }

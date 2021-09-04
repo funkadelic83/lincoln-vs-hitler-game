@@ -34,27 +34,28 @@ public class EnemyMovement : MonoBehaviour
 
     void FollowTarget()
     {
-        if(!followPlayer)
+        if (!followPlayer)
         {
             return;
         }
 
-        if(Vector3.Distance(transform.position, playerTarget.position) > attack_Distance)
+        if (Vector3.Distance(transform.position, playerTarget.position) > attack_Distance)
         {
 
             Vector3 lookVector = playerTarget.position - transform.position;
-            lookVector.y = transform.position.y;
+            lookVector.y = 0;
             Quaternion rot = Quaternion.LookRotation(lookVector);
             transform.rotation = Quaternion.Slerp(transform.rotation, rot, 1);
 
             myBody.velocity = transform.forward * speed;
-            
-            if(myBody.velocity.sqrMagnitude != 0)
+
+            if (myBody.velocity.sqrMagnitude != 0)
             {
                 enemyAnim.Walk(true);
             }
-        
-        } else if (Vector3.Distance(transform.position, playerTarget.position) <= attack_Distance)
+
+        }
+        else if (Vector3.Distance(transform.position, playerTarget.position) <= attack_Distance)
         {
             myBody.velocity = Vector3.zero;
             enemyAnim.Walk(false);
@@ -69,13 +70,13 @@ public class EnemyMovement : MonoBehaviour
             return;
         current_Attack_Time += Time.deltaTime;
 
-        if(current_Attack_Time > default_Attack_Time)
+        if (current_Attack_Time > default_Attack_Time)
         {
             enemyAnim.EnemyAttack(Random.Range(0, 3));
             current_Attack_Time = 0f;
         }
 
-        if(Vector3.Distance(transform.position, playerTarget.position) >
+        if (Vector3.Distance(transform.position, playerTarget.position) >
             attack_Distance + chase_Player_After_Attack)
         {
             attackPlayer = false;

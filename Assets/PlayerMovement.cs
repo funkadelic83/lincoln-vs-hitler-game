@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody myBody;
     //public Transform startPOS;
     //public GameObject enemy;
+    public GameObject childPrefab;
 
     public float walk_Speed = 2f;
     public float z_Speed = 1.5f;
@@ -40,7 +41,10 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        //KEEP THE CHILD PREFAB FROM DRIFTING;
+        childPrefab.transform.position = gameObject.transform.position;
+        childPrefab.transform.rotation = gameObject.transform.rotation;
+      
         AnimatePlayerWalk();
         HandleAnimations();
         HandleInput();

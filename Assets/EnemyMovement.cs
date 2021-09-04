@@ -13,6 +13,7 @@ public class EnemyMovement : MonoBehaviour
     private float current_Attack_Time;
     private float default_Attack_Time = 2f;
     private bool followPlayer, attackPlayer;
+    public GameObject childPrefab;
 
     private void Awake()
     {
@@ -30,6 +31,8 @@ public class EnemyMovement : MonoBehaviour
     private void Update()
     {
         Attack();
+        childPrefab.transform.position = gameObject.transform.position;
+        childPrefab.transform.rotation = gameObject.transform.rotation;
     }
 
     void FollowTarget()

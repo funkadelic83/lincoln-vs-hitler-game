@@ -25,7 +25,7 @@ public class AttackUniversal : MonoBehaviour
         {
             if(is_Player)
             {
-                //Debug.Log("Yo dog");
+                Debug.Log("Yo dog");
                 //Vector3 hitFX_Pos = hit[0].transform.position;
                 //hitFX_Pos.y += 1.3f;
                 //if(hit[0].transform.forward.x > 0)

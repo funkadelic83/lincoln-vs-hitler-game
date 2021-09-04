@@ -43,7 +43,7 @@ public class EnemyMovement : MonoBehaviour
         {
 
             Vector3 lookVector = playerTarget.position - transform.position;
-            lookVector.y = 0;
+            lookVector.y = transform.position.y;
             Quaternion rot = Quaternion.LookRotation(lookVector);
             transform.rotation = Quaternion.Slerp(transform.rotation, rot, 1);
 

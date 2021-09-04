@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    #region Declarations
+
     private CharacterAnimation player_Anim;
     private Rigidbody myBody;
-    //public Transform startPOS;
-    //public GameObject enemy;
-    
+
     public float walk_Speed = 2f;
     public float z_Speed = 1.5f;
     public float jumpThrust = 3f;
@@ -19,8 +17,9 @@ public class PlayerMovement : MonoBehaviour
     private float rotation_Speed = 15f;
     private float feetDist = 0.1f;
 
+
     public bool isGrounded;
-    #endregion
+
 
     // Start is called before the first frame update
 
@@ -29,32 +28,31 @@ public class PlayerMovement : MonoBehaviour
         player_Anim = GetComponentInChildren<CharacterAnimation>();
         myBody = GetComponent<Rigidbody>();
 
+
     }
 
     void Start()
     {
-        //USE IF NEEDED
-        //enemy = GameObject.FindGameObjectWithTag("Enemy");
+
     }
 
     // Update is called once per frame
     void Update()
     {
-      
+        RotatePlayer();
         AnimatePlayerWalk();
         HandleAnimations();
         HandleInput();
+
     }
 
     private void FixedUpdate()
     {
         DetectMovement();
         DetectGround();
-     
-        RotatePlayer();
     }
 
-    private void DetectGround()
+    void DetectGround()
     {
         if(Physics.Raycast(transform.position, Vector3.down, feetDist))
         {
@@ -67,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
 
     void HandleInput()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded)
         {
             Jump();
         }
@@ -83,8 +81,13 @@ public class PlayerMovement : MonoBehaviour
         if(isGrounded)
         {
             player_Anim.HandleGrounded();
+
         }
     }
+
+
+
+
 
     void Jump()
     {
@@ -100,47 +103,32 @@ public class PlayerMovement : MonoBehaviour
 
     void DetectMovement()
     {
-        Vector3 m_Input = new Vector3(
-            Input.GetAxisRaw(Axis.VERTICAL_AXIS) * -1, 
-            0, 
-            Input.GetAxisRaw(Axis.HORIZONTAL_AXIS));
-        myBody.MovePosition(transform.position + m_Input * Time.deltaTime * walk_Speed);
-        
-        //OLD PHYSICS (POTENTIALLY CAUSED COLLIDER TO DRIFT:
-        //myBody.velocity = new Vector3(
-        //    Input.GetAxisRaw(Axis.VERTICAL_AXIS) * -z_Speed, 
-        //    //0f,
-        //    myBody.velocity.y,
-        //    Input.GetAxisRaw(Axis.HORIZONTAL_AXIS) * walk_Speed); ;
+        myBody.velocity = new Vector3(
+            //Input.GetAxisRaw(Axis.VERTICAL_AXIS) * -z_Speed, 
+            0f,
+            myBody.velocity.y,
+            Input.GetAxisRaw(Axis.HORIZONTAL_AXIS) * walk_Speed); ;
    
     }
 
+
+
+
     void RotatePlayer()
     {
-        
-        //ROTATES THE PLAYER TO FACE LEFT OR RIGHT DEPENDING ON INPUT
-        if (Input.GetAxisRaw(Axis.HORIZONTAL_AXIS) > 0)
+        if(Input.GetAxisRaw(Axis.HORIZONTAL_AXIS) > 0 )
         {
-            //IF PLAYER IS FACING THE OTHER WAY:
-            Quaternion rot = Quaternion.Euler(0f, rotation_Y, 0f); 
-            myBody.MoveRotation(rot);
-        }
-        else if (Input.GetAxisRaw(Axis.HORIZONTAL_AXIS) < 0)
-        {
-            Quaternion rot = Quaternion.Euler(0f, 180f, 0f);
-            myBody.MoveRotation(rot);
-            
-            //transform.rotation = Quaternion.Euler(0f, -rotation_Y, 0f);
+            transform.rotation = Quaternion.Euler(0f, rotation_Y, 0f);
+        } else if (Input.GetAxisRaw(Axis.HORIZONTAL_AXIS) < 0 ){
+            transform.rotation = Quaternion.Euler(0f, 180f, 0f);
         }
     }
 
     void AnimatePlayerWalk()
     {
-
-        //ANIMATES THE PLAYER'S WALK IF MOVEMENT BUTTON PRESSED
         if(Input.GetAxisRaw(Axis.HORIZONTAL_AXIS) != 0 
-            ||
-            Input.GetAxisRaw(Axis.VERTICAL_AXIS) != 0 
+            //||
+            //Input.GetAxisRaw(Axis.VERTICAL_AXIS) != 0 
             )
         {
             player_Anim.Walk(true);

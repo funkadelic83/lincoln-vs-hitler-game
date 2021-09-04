@@ -5,6 +5,7 @@ using UnityEngine;
 public class CharacterAnimation : MonoBehaviour
 {
     private Animator anim;
+    //private PlayerMovement playerMovement;
     private Rigidbody rb;
 
     private void Awake()
@@ -113,6 +114,15 @@ public class CharacterAnimation : MonoBehaviour
         }
     }
 
+    //public void Jump()
+    //{
+    //    anim.SetTrigger(AnimationTags.JUMP_ANIMATION);
+    //}
+
+    //public void Land()
+    //{
+    //    anim.SetTrigger(AnimationTags.LAND_ANIMATION);
+    //}
 }
 
 

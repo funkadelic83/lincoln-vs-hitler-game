@@ -106,7 +106,6 @@ public class GameManager : Singleton<GameManager>
             EndGame.Invoke("Enemy");
         } else
         {
-
             NewRound.Invoke(isPlayerWinner);
         }
 

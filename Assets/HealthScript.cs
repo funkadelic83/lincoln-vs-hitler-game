@@ -10,11 +10,11 @@ public class HealthScript : MonoBehaviour
     private bool characterDied;
     public bool is_Player;
     private HealthUI health_UI;
-    public GameManager gameManager;
+    //public GameManager gameManager;
 
     private void Awake()
     {
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        //gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         animationScript = GetComponentInChildren<CharacterAnimation>();
         health_UI = GetComponent<HealthUI>();
         enemyMovement = GameObject.FindWithTag(Tags.ENEMY_TAG).GetComponent<EnemyMovement>();
@@ -27,12 +27,14 @@ public class HealthScript : MonoBehaviour
 
     public void ResetHealth(bool isPlayerWinner)
     {
+        Debug.Log("Health Reset");
         health = 100f;
         health_UI.DisplayHealth(health);
+        characterDied = false;
     }
     public void ApplyDamage (float damage, bool knockDown)
     {
-        if(characterDied)
+        if (characterDied)
         {
             return;
         }

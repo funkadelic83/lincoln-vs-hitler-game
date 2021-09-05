@@ -5,11 +5,11 @@ using TMPro;
 
 public class TimeUI : MonoBehaviour
 {
-    // Start is called before the first frame update
     public TextMeshProUGUI time_UI;
     public float timeRemaining;
     private GameObject player;
     private GameObject enemy;
+
     void Start()
     {
         enemy = GameObject.FindWithTag(Tags.ENEMY_TAG);
@@ -18,7 +18,6 @@ public class TimeUI : MonoBehaviour
         time_UI.text = timeRemaining.ToString();
         GameManager.Instance.NewRound.AddListener(ResetClock);
     }
-
     void ResetClock(bool isPlayerWinner)
     {
         timeRemaining = 60f;

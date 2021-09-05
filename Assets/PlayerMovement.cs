@@ -8,7 +8,6 @@ public class PlayerMovement : MonoBehaviour
     private CharacterAnimation player_Anim;
     private Rigidbody myBody;
     private GameObject startPosition;
-    //public GameObject enemy;
     public GameObject childPrefab;
 
     public float walk_Speed = 2f;
@@ -19,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     private float rotation_Y = 0f;
     private float rotation_Speed = 15f;
     private float feetDist = 0.1f;
+    private float freezeBetweenRoundDuration = 2f;
 
     public bool isGrounded;
     #endregion
@@ -35,24 +35,29 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         GameManager.Instance.NewRound.AddListener(ResetPlayerPos);
-        //USE IF NEEDED
-        //enemy = GameObject.FindGameObjectWithTag("Enemy");
     }
-
+    
     private void ResetPlayerPos(bool isPlayerWinner)
     {
         transform.position = startPosition.transform.position;
         Quaternion rot = Quaternion.Euler(0f, rotation_Y, 0f);
         myBody.MoveRotation(rot);
+        gameObject.GetComponent<PlayerMovement>().enabled = false;
+        Invoke("UnfreezePlayerMovement", freezeBetweenRoundDuration);
+    }
+
+    private void UnfreezePlayerMovement()
+    {
+        gameObject.GetComponent<PlayerMovement>().enabled = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //KEEP THE CHILD PREFAB FROM DRIFTING;
+        //KEEP THE CHILD PREFAB FROM DRIFTING
         childPrefab.transform.position = gameObject.transform.position;
         childPrefab.transform.rotation = gameObject.transform.rotation;
-      
+
         AnimatePlayerWalk();
         HandleAnimations();
         HandleInput();

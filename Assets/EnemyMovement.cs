@@ -13,8 +13,12 @@ public class EnemyMovement : MonoBehaviour
     private float chase_Player_After_Attack = 1f;
     private float current_Attack_Time;
     private float default_Attack_Time = 2f;
+    private float freezeBetweenRoundDuration = 3f;
+
+
     private bool followPlayer, attackPlayer;
     public GameObject childPrefab;
+
 
     private void Awake()
     {
@@ -35,6 +39,13 @@ public class EnemyMovement : MonoBehaviour
         transform.position = startPosition.transform.position;
         Quaternion rot = Quaternion.Euler(0f, 0f, 0f);
         myBody.MoveRotation(rot);
+        gameObject.GetComponent<EnemyMovement>().enabled = false;
+        Invoke("UnfreezeEnemyMovement", freezeBetweenRoundDuration);
+    }
+
+    void UnfreezeEnemyMovement()
+    {
+        gameObject.GetComponent<EnemyMovement>().enabled = true;
     }
 
     private void FixedUpdate()

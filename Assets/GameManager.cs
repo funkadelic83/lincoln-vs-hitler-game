@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -19,6 +20,7 @@ public class GameManager : Singleton<GameManager>
 
     public Events.EventGameState OnGameStateChanged;
     public Events.NewRoundEvent NewRound;
+    public Events.DeclareWinner EndGame;
 
     public GameState CurrentGameState
     {
@@ -32,17 +34,22 @@ public class GameManager : Singleton<GameManager>
         }
     }
     
-    public int roundNumber;
+    public int roundNumber = 1;
     public int playerWins;
     public int enemyWins;
+    //private float secondsBetweenRounds = 3f;
+
+    public TextMeshProUGUI statusText;
 
     #endregion
 
     private void Start()
     {
-        roundNumber = 0;
+        roundNumber = 1;
+        NewRound.Invoke(true);
     }
 
+    #region PauseLogic
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.Escape))
@@ -78,10 +85,10 @@ public class GameManager : Singleton<GameManager>
         OnGameStateChanged.Invoke(_currentGameState, previousGameState);
     }
 
+    #endregion
+
     public void EndRound(bool isPlayerWinner)
     {
-        Debug.Log("End Round. Player wins =" + isPlayerWinner);
-
         if (isPlayerWinner)
         {
             playerWins++;
@@ -93,18 +100,16 @@ public class GameManager : Singleton<GameManager>
 
         if (playerWins >= 2)
         {
-            Debug.Log("the game is over. player wins!");
+            EndGame.Invoke("Player");
         } else if (enemyWins >= 2)
         {
-            Debug.Log("the enemy wins. game over!");
+            EndGame.Invoke("Enemy");
         } else
         {
+
             NewRound.Invoke(isPlayerWinner);
         }
 
-
     }
-
-
 
 }

@@ -111,14 +111,6 @@ public class PlayerMovement : MonoBehaviour
             0,
             Input.GetAxisRaw(Axis.HORIZONTAL_AXIS));
         myBody.MovePosition(transform.position + m_Input * Time.deltaTime * walk_Speed);
-
-        //OLD PHYSICS (POTENTIALLY CAUSED COLLIDER TO DRIFT:
-        //myBody.velocity = new Vector3(
-        //    Input.GetAxisRaw(Axis.VERTICAL_AXIS) * -z_Speed, 
-        //    //0f,
-        //    myBody.velocity.y,
-        //    Input.GetAxisRaw(Axis.HORIZONTAL_AXIS) * walk_Speed); ;
-
     }
 
     void RotatePlayer()

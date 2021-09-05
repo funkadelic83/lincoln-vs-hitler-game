@@ -20,9 +20,10 @@ public class CharacterAnimation : MonoBehaviour
 
     private void ReturnToIdle(bool isPlayerWinner)
     {
+        //THIS IS CURRENTLY BROKEN
         //anim.Play(AnimationTags.IDLE_ANIMATION);
         Play_IdleAnimation();
-        Debug.Log("It is supposed to return to start pos");
+        //Debug.Log("It is supposed to return to start pos");
     } 
     public void Walk(bool move)
     {

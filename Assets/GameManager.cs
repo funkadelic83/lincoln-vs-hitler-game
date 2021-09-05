@@ -31,8 +31,17 @@ public class GameManager : Singleton<GameManager>
             _currentGameState = value;
         }
     }
+    
+    public int roundNumber;
+    public int playerWins;
+    public int enemyWins;
 
     #endregion
+
+    private void Start()
+    {
+        roundNumber = 0;
+    }
 
     private void Update()
     {
@@ -72,88 +81,30 @@ public class GameManager : Singleton<GameManager>
     public void EndRound(bool isPlayerWinner)
     {
         Debug.Log("End Round. Player wins =" + isPlayerWinner);
-        NewRound.Invoke(isPlayerWinner);
+
+        if (isPlayerWinner)
+        {
+            playerWins++;
+        } else if (!isPlayerWinner) {
+            enemyWins++;
+        }
+
+        roundNumber++;
+
+        if (playerWins >= 2)
+        {
+            Debug.Log("the game is over. player wins!");
+        } else if (enemyWins >= 2)
+        {
+            Debug.Log("the enemy wins. game over!");
+        } else
+        {
+            NewRound.Invoke(isPlayerWinner);
+        }
+
+
     }
-  
-    
-    
-    
-    
-    
-    
-    
-    //public int matchRound;
-    //private int playerWins, enemyWins;
-    //private GameObject player, enemy;
-    //private Transform playerStartPos, enemyStartPos;
 
-    ////THIS IS ALL TIGHTLY COUPLED CODE. IT NEEDS TO BE REDONE.
-
-    //private void Awake()
-    //{
-    //    player = GameObject.FindWithTag(Tags.PLAYER_TAG);
-    //    enemy = GameObject.FindWithTag(Tags.ENEMY_TAG);
-    //    playerStartPos = GameObject.Find("PlayerStartPosition").transform;
-    //    enemyStartPos = GameObject.Find("EnemyStartPosition").transform;
-    //}
-
-    //private void Start()
-    //{
-    //    matchRound = 0;
-    //    playerWins = 0;
-    //    enemyWins = 0;
-    //    StartRound();
-    //    Debug.Log("Let the games begin!");
-    //}
-
-    //public void EndRound()
-    //{
-    //    if (player.GetComponent<HealthScript>().health > enemy.GetComponent<HealthScript>().health)
-    //    {
-    //        playerWins++;
-    //        Debug.Log("Player Wins");
-    //    } else if (player.GetComponent<HealthScript>().health < enemy.GetComponent<HealthScript>().health)
-    //    {
-    //        enemyWins++;
-    //        Debug.Log("Enemy Wins");
-    //    } else
-    //    {
-    //        Debug.Log("It's a tie!");
-    //    }
-
-    //    if (matchRound < 3)
-    //    {
-    //        StartRound();
-    //    } else if (matchRound >= 3)
-    //    {
-    //        CallMatch();
-    //    }
-    //}
-
-    //public void StartRound()
-    //{
-    //    matchRound++;
-    //    player.transform.position = playerStartPos.position;
-    //    enemy.transform.position = enemyStartPos.position;
-    //    player.GetComponent<HealthScript>().health = 100;
-    //    enemy.GetComponent<HealthScript>().health = 100;
-    //    Debug.Log("Round " + matchRound + ". Fight!");
-    //    player.GetComponentInChildren<CharacterAnimation>().enabled = true;
-    //    enemy.GetComponentInChildren<CharacterAnimation>().enabled = true;
-    //    //player.GetComponentInChildren<CharacterAnimation>().Play_IdleAnimation;
-    //    //enemy.GetComponentInChildren<CharacterAnimation>().Play_IdleAnimation;
-    //}
-
-    //public void CallMatch()
-    //{
-    //    if(playerWins > enemyWins)
-    //    {
-    //        Debug.Log("Player Wins!");
-    //    } else if (enemyWins > playerWins)
-    //    {
-    //        Debug.Log("Enemy Wins!");
-    //    }
-    //}
 
 
 }

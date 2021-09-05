@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
     #region Declarations
     private CharacterAnimation player_Anim;
     private Rigidbody myBody;
-    //public Transform startPOS;
+    private GameObject startPosition;
     //public GameObject enemy;
     public GameObject childPrefab;
 
@@ -29,13 +29,21 @@ public class PlayerMovement : MonoBehaviour
     {
         player_Anim = GetComponentInChildren<CharacterAnimation>();
         myBody = GetComponent<Rigidbody>();
-
+        startPosition = GameObject.Find("PlayerStartPosition");
     }
 
     void Start()
     {
+        GameManager.Instance.NewRound.AddListener(ResetPlayerPos);
         //USE IF NEEDED
         //enemy = GameObject.FindGameObjectWithTag("Enemy");
+    }
+
+    private void ResetPlayerPos(bool isPlayerWinner)
+    {
+        transform.position = startPosition.transform.position;
+        Quaternion rot = Quaternion.Euler(0f, rotation_Y, 0f);
+        myBody.MoveRotation(rot);
     }
 
     // Update is called once per frame

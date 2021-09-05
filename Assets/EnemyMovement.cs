@@ -8,6 +8,7 @@ public class EnemyMovement : MonoBehaviour
     private Rigidbody myBody;
     public float speed = 1.8f;
     private Transform playerTarget;
+    private GameObject startPosition;
     public float attack_Distance = 1.3f;
     private float chase_Player_After_Attack = 1f;
     private float current_Attack_Time;
@@ -21,6 +22,19 @@ public class EnemyMovement : MonoBehaviour
         myBody = GetComponent<Rigidbody>();
         followPlayer = true;
         playerTarget = GameObject.FindWithTag(Tags.PLAYER_TAG).transform;
+        startPosition = GameObject.Find("EnemyStartPosition");
+    }
+
+    private void Start()
+    {
+        GameManager.Instance.NewRound.AddListener(ResetPosition);
+    }
+
+    private void ResetPosition(bool isPlayerWinner)
+    {
+        transform.position = startPosition.transform.position;
+        Quaternion rot = Quaternion.Euler(0f, 0f, 0f);
+        myBody.MoveRotation(rot);
     }
 
     private void FixedUpdate()

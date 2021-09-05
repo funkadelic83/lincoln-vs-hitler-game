@@ -5,7 +5,7 @@ using UnityEngine;
 public class AnimationTags  
 {
     public const string MOVEMENT = "Walk";
-    public const string IDLE_ANIMATION = "Idle";
+    public const string IDLE_ANIMATION = "Idle_01";
     public const string JUMP_ANIMATION = "Jump";
     public const string LAND_ANIMATION = "Land";
 

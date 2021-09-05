@@ -20,7 +20,16 @@ public class HealthScript : MonoBehaviour
         enemyMovement = GameObject.FindWithTag(Tags.ENEMY_TAG).GetComponent<EnemyMovement>();
     }
 
+    private void Start()
+    {
+        GameManager.Instance.NewRound.AddListener(ResetHealth);
+    }
 
+    public void ResetHealth(bool isPlayerWinner)
+    {
+        health = 100f;
+        health_UI.DisplayHealth(health);
+    }
     public void ApplyDamage (float damage, bool knockDown)
     {
         if(characterDied)
@@ -39,15 +48,15 @@ public class HealthScript : MonoBehaviour
             characterDied = true;
             if(is_Player)
             {
-                GameObject.FindWithTag(Tags.PLAYER_TAG).GetComponent<CharacterAnimation>().enabled = false;
+                //GameObject.FindWithTag(Tags.PLAYER_TAG).GetComponent<CharacterAnimation>().enabled = false;
+                GameManager.Instance.EndRound(false);
             }
             if(!is_Player)
             {
                 //GameObject.FindWithTag(Tags.PLAYER_TAG).GetComponent<CharacterAnimation>().VictoryDance();
-                
+                GameManager.Instance.EndRound(true);
             }
 
-            //gameManager.EndRound();
             return;
         }
 

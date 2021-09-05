@@ -5,7 +5,6 @@ using UnityEngine;
 public class CharacterAnimation : MonoBehaviour
 {
     private Animator anim;
-    //private PlayerMovement playerMovement;
     private Rigidbody rb;
 
     private void Awake()
@@ -14,6 +13,17 @@ public class CharacterAnimation : MonoBehaviour
         rb = GetComponentInParent<Rigidbody>();
     }
 
+    private void Start()
+    {
+        GameManager.Instance.NewRound.AddListener(ReturnToIdle);
+    }
+
+    private void ReturnToIdle(bool isPlayerWinner)
+    {
+        //anim.Play(AnimationTags.IDLE_ANIMATION);
+        Play_IdleAnimation();
+        Debug.Log("It is supposed to return to start pos");
+    } 
     public void Walk(bool move)
     {
         anim.SetBool(AnimationTags.MOVEMENT, move);

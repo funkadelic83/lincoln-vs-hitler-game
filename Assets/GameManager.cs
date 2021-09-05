@@ -18,7 +18,7 @@ public class GameManager : Singleton<GameManager>
     GameState _currentGameState = GameState.PREGAME;
 
     public Events.EventGameState OnGameStateChanged;
-    public Events.NewRoundEvent newRound;
+    public Events.NewRoundEvent NewRound;
 
     public GameState CurrentGameState
     {
@@ -39,7 +39,6 @@ public class GameManager : Singleton<GameManager>
         if(Input.GetKeyDown(KeyCode.Escape))
         {
             TogglePause();
-            //Debug.Log("Paused");
         }
     }
 
@@ -70,6 +69,19 @@ public class GameManager : Singleton<GameManager>
         OnGameStateChanged.Invoke(_currentGameState, previousGameState);
     }
 
+    public void EndRound(bool isPlayerWinner)
+    {
+        Debug.Log("End Round. Player wins =" + isPlayerWinner);
+        NewRound.Invoke(isPlayerWinner);
+    }
+  
+    
+    
+    
+    
+    
+    
+    
     //public int matchRound;
     //private int playerWins, enemyWins;
     //private GameObject player, enemy;

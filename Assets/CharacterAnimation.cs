@@ -15,16 +15,8 @@ public class CharacterAnimation : MonoBehaviour
 
     private void Start()
     {
-        GameManager.Instance.NewRound.AddListener(ReturnToIdle);
+        GameManager.Instance.NewRound.AddListener(Play_IdleAnimation);
     }
-
-    private void ReturnToIdle()
-    {
-        //THIS IS CURRENTLY BROKEN
-        anim.Play(AnimationTags.IDLE_ANIMATION);
-        //Play_IdleAnimation();
-        //Debug.Log("It is supposed to return to start pos");
-    } 
     public void Walk(bool move)
     {
         anim.SetBool(AnimationTags.MOVEMENT, move);
@@ -67,7 +59,7 @@ public class CharacterAnimation : MonoBehaviour
 
     public void Death()
     {
-        anim.SetTrigger(AnimationTags.DEATH_TRIGGER);
+        anim.SetBool(AnimationTags.DEATH_TRIGGER, true);
     }
 
     public void KnockDown()

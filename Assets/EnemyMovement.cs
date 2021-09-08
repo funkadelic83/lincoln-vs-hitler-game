@@ -14,6 +14,7 @@ public class EnemyMovement : MonoBehaviour
     private float current_Attack_Time;
     private float default_Attack_Time = 2f;
     private float freezeBetweenRoundDuration = 3f;
+    private EnemyMovement enemyMove;
 
 
     private bool followPlayer, attackPlayer;
@@ -25,6 +26,7 @@ public class EnemyMovement : MonoBehaviour
         enemyAnim = GetComponentInChildren<CharacterAnimation>();
         myBody = GetComponent<Rigidbody>();
         followPlayer = true;
+        enemyMove = GetComponent<EnemyMovement>();
         playerTarget = GameObject.FindWithTag(Tags.PLAYER_TAG).transform;
         startPosition = GameObject.Find("EnemyStartPosition");
     }
@@ -32,20 +34,25 @@ public class EnemyMovement : MonoBehaviour
     private void Start()
     {
         GameManager.Instance.NewRound.AddListener(ResetPosition);
+        ResetPosition();
     }
 
     private void ResetPosition()
     {
+        enemyMove.enabled = false;
+        enemyAnim.Walk(false);
+        enemyAnim.Play_IdleAnimation();
         transform.position = startPosition.transform.position;
-        Quaternion rot = Quaternion.Euler(0f, 0f, 0f);
+        Quaternion rot = Quaternion.Euler(0f, 180f, 0f);
         myBody.MoveRotation(rot);
-        gameObject.GetComponent<EnemyMovement>().enabled = false;
         Invoke("UnfreezeEnemyMovement", freezeBetweenRoundDuration);
     }
 
+ 
+
     void UnfreezeEnemyMovement()
     {
-        gameObject.GetComponent<EnemyMovement>().enabled = true;
+        enemyMove.enabled = true;
     }
 
     private void FixedUpdate()
@@ -55,9 +62,8 @@ public class EnemyMovement : MonoBehaviour
 
     private void Update()
     {
+        
         Attack();
-        childPrefab.transform.position = gameObject.transform.position;
-        childPrefab.transform.rotation = gameObject.transform.rotation;
     }
 
     void FollowTarget()

@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     private float rotation_Y = 0f;
     //private float rotation_Speed = 15f;
     private float feetDist = 0.1f;
-    private float freezeBetweenRoundDuration = 2f;
+    private float freezeBetweenRoundDuration = 3f;
 
     public bool isGrounded;
     #endregion
@@ -35,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         GameManager.Instance.NewRound.AddListener(ResetPlayerPos);
+        ResetPlayerPos();
     }
     
     private void ResetPlayerPos()
@@ -42,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
         transform.position = startPosition.transform.position;
         Quaternion rot = Quaternion.Euler(0f, rotation_Y, 0f);
         myBody.MoveRotation(rot);
+        isGrounded = true;
         gameObject.GetComponent<PlayerMovement>().enabled = false;
         Invoke("UnfreezePlayerMovement", freezeBetweenRoundDuration);
     }
@@ -54,10 +56,6 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //KEEP THE CHILD PREFAB FROM DRIFTING
-        childPrefab.transform.position = gameObject.transform.position;
-        childPrefab.transform.rotation = gameObject.transform.rotation;
-
         AnimatePlayerWalk();
         HandleAnimations();
         HandleInput();

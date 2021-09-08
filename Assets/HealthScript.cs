@@ -53,6 +53,10 @@ public class HealthScript : MonoBehaviour
             {
 
                 //GameObject.FindWithTag(Tags.PLAYER_TAG).GetComponent<CharacterAnimation>().enabled = false;
+               
+                //THIS IS TIGHTLY COUPLED - FIX
+                
+                //enemyMovement.enabled = true;
                 GameManager.Instance.EndRound(false);
             }
             if(!is_Player)

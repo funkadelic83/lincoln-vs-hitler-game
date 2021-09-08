@@ -21,6 +21,7 @@ public class GameManager : Singleton<GameManager>
     public Events.EventGameState OnGameStateChanged;
     public Events.NewRoundEvent NewRound;
     public Events.DeclareWinner EndGame;
+    public Events.EndRoundEvent EndCurrentRound;
 
     public GameState CurrentGameState
     {
@@ -104,6 +105,7 @@ public class GameManager : Singleton<GameManager>
         }
         else
         {
+            
             NewRound.Invoke();
         }
 
@@ -117,9 +119,8 @@ public class GameManager : Singleton<GameManager>
         } else if (!isPlayerWinner) {
             enemyWins++;
         }
-
         StartCoroutine("delayBetweenRounds");
-
+        EndCurrentRound.Invoke();
     }
 
 }

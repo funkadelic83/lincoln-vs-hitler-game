@@ -25,7 +25,7 @@ public class HealthScript : MonoBehaviour
         GameManager.Instance.NewRound.AddListener(ResetHealth);
     }
 
-    public void ResetHealth(bool isPlayerWinner)
+    public void ResetHealth()
     {
         Debug.Log("Health Reset");
         health = 100f;

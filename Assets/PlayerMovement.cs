@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     public float velocityY = 0f;
 
     private float rotation_Y = 0f;
-    private float rotation_Speed = 15f;
+    //private float rotation_Speed = 15f;
     private float feetDist = 0.1f;
     private float freezeBetweenRoundDuration = 2f;
 
@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
         GameManager.Instance.NewRound.AddListener(ResetPlayerPos);
     }
     
-    private void ResetPlayerPos(bool isPlayerWinner)
+    private void ResetPlayerPos()
     {
         transform.position = startPosition.transform.position;
         Quaternion rot = Quaternion.Euler(0f, rotation_Y, 0f);

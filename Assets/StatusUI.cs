@@ -14,7 +14,7 @@ public class StatusUI : MonoBehaviour
         GameManager.Instance.EndGame.AddListener(ShowWinner);
     }
 
-    void ShowRoundNumber(bool player_Win)
+    void ShowRoundNumber()
     {
         statusText.text = "Round " + GameManager.Instance.roundNumber.ToString();
         statusText.enabled = true;

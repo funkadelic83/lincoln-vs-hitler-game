@@ -18,7 +18,7 @@ public class CharacterAnimation : MonoBehaviour
         GameManager.Instance.NewRound.AddListener(ReturnToIdle);
     }
 
-    private void ReturnToIdle(bool isPlayerWinner)
+    private void ReturnToIdle()
     {
         //THIS IS CURRENTLY BROKEN
         anim.Play(AnimationTags.IDLE_ANIMATION);

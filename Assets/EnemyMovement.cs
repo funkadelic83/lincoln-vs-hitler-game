@@ -34,7 +34,7 @@ public class EnemyMovement : MonoBehaviour
         GameManager.Instance.NewRound.AddListener(ResetPosition);
     }
 
-    private void ResetPosition(bool isPlayerWinner)
+    private void ResetPosition()
     {
         transform.position = startPosition.transform.position;
         Quaternion rot = Quaternion.Euler(0f, 0f, 0f);

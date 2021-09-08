@@ -18,7 +18,7 @@ public class TimeUI : MonoBehaviour
         time_UI.text = timeRemaining.ToString();
         GameManager.Instance.NewRound.AddListener(ResetClock);
     }
-    void ResetClock(bool isPlayerWinner)
+    void ResetClock()
     {
         timeRemaining = 60f;
     }

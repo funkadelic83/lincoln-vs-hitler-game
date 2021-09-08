@@ -37,7 +37,7 @@ public class GameManager : Singleton<GameManager>
     public int roundNumber = 1;
     public int playerWins;
     public int enemyWins;
-    //private float secondsBetweenRounds = 3f;
+    private float secondsBetweenRounds = 3f;
 
     public TextMeshProUGUI statusText;
 
@@ -46,7 +46,7 @@ public class GameManager : Singleton<GameManager>
     private void Start()
     {
         roundNumber = 1;
-        NewRound.Invoke(true);
+        NewRound.Invoke();
     }
 
     #region PauseLogic
@@ -87,6 +87,28 @@ public class GameManager : Singleton<GameManager>
 
     #endregion
 
+
+    public IEnumerator delayBetweenRounds()
+    {
+        yield return new WaitForSeconds(secondsBetweenRounds);
+
+        roundNumber++;
+
+        if (playerWins >= 2)
+        {
+            EndGame.Invoke("Player");
+        }
+        else if (enemyWins >= 2)
+        {
+            EndGame.Invoke("Enemy");
+        }
+        else
+        {
+            NewRound.Invoke();
+        }
+
+    }
+
     public void EndRound(bool isPlayerWinner)
     {
         if (isPlayerWinner)
@@ -96,18 +118,7 @@ public class GameManager : Singleton<GameManager>
             enemyWins++;
         }
 
-        roundNumber++;
-
-        if (playerWins >= 2)
-        {
-            EndGame.Invoke("Player");
-        } else if (enemyWins >= 2)
-        {
-            EndGame.Invoke("Enemy");
-        } else
-        {
-            NewRound.Invoke(isPlayerWinner);
-        }
+        StartCoroutine("delayBetweenRounds");
 
     }
 

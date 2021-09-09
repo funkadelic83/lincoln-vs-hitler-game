@@ -15,6 +15,7 @@ public class EnemyMovement : MonoBehaviour
     private float default_Attack_Time = 2f;
     private float freezeBetweenRoundDuration = 3f;
     private EnemyMovement enemyMove;
+    private Transform parentTransform;
 
 
     private bool followPlayer, attackPlayer;
@@ -34,15 +35,15 @@ public class EnemyMovement : MonoBehaviour
     private void Start()
     {
         GameManager.Instance.NewRound.AddListener(ResetPosition);
-        //GameManager.Instance.EndRound.AddListener(
         ResetPosition();
     }
 
     private void ResetPosition()
     {
-        enemyMove.enabled = false;
-        enemyAnim.Walk(false);
         enemyAnim.Play_IdleAnimation();
+        enemyMove.enabled = false;
+        attackPlayer = false;
+        enemyAnim.Walk(false);
         transform.position = startPosition.transform.position;
         Quaternion rot = Quaternion.Euler(0f, 180f, 0f);
         myBody.MoveRotation(rot);
@@ -53,6 +54,7 @@ public class EnemyMovement : MonoBehaviour
 
     void UnfreezeEnemyMovement()
     {
+        attackPlayer = true;
         enemyMove.enabled = true;
     }
 

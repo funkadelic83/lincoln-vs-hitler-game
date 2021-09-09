@@ -50,6 +50,7 @@ public class HealthScript : MonoBehaviour
             {
                 //THIS IS TIGHTLY COUPLED - FIX
 
+                gameObject.GetComponent<PlayerMovement>().enabled = false;
                 //enemyMovement.enabled = true;
                 GameManager.Instance.EndRound(false);
             }

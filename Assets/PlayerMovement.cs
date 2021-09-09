@@ -42,6 +42,8 @@ public class PlayerMovement : MonoBehaviour
     
     private void ResetPlayerPos()
     {
+        player_Anim.Play_IdleAnimation();
+        player_Anim.Walk(false);
         transform.position = startPosition.transform.position;
         Quaternion rot = Quaternion.Euler(0f, rotation_Y, 0f);
         myBody.MoveRotation(rot);

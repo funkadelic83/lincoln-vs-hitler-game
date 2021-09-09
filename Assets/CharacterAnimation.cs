@@ -6,11 +6,14 @@ public class CharacterAnimation : MonoBehaviour
 {
     private Animator anim;
     private Rigidbody rb;
+    private AnimatorStateInfo stateInfo;
+    private Transform parentTransform;
+    private bool rootMotionOn;
 
     private void Awake()
     {
-        anim = GetComponent<Animator>();
-        rb = GetComponentInParent<Rigidbody>();
+        anim = this.gameObject.GetComponent<Animator>();
+        rb = this.gameObject.GetComponentInParent<Rigidbody>();
     }
 
     private void Start()
@@ -25,6 +28,8 @@ public class CharacterAnimation : MonoBehaviour
     public void Play_IdleAnimation()
     {
         anim.Play(AnimationTags.IDLE_ANIMATION);
+ 
+
     }
 
     public void Punch_1()
@@ -61,6 +66,23 @@ public class CharacterAnimation : MonoBehaviour
     {
         anim.SetBool(AnimationTags.DEATH_TRIGGER, true);
     }
+
+    private void OnAnimatorMove()
+    {
+        stateInfo = anim.GetCurrentAnimatorStateInfo(0);
+        if(stateInfo.IsTag("Death"))
+        {
+            anim.ApplyBuiltinRootMotion();
+            rootMotionOn = true;
+
+        } else if (!stateInfo.IsTag("Death") && rootMotionOn)
+        {
+            rootMotionOn = false;
+            transform.position = transform.parent.position;
+            transform.rotation = transform.parent.rotation;
+        }
+    }
+
 
     public void KnockDown()
     {

@@ -9,11 +9,11 @@ public class TimeUI : MonoBehaviour
     public float timeRemaining;
     private GameObject player;
     private GameObject enemy;
-   // public bool combatActive;
+    public bool combatActive;
 
     void Start()
     {
-        //combatActive = true;
+        combatActive = false;
         enemy = GameObject.FindWithTag(Tags.ENEMY_TAG);
         player = GameObject.FindWithTag(Tags.PLAYER_TAG);
         timeRemaining = 60f;
@@ -24,7 +24,10 @@ public class TimeUI : MonoBehaviour
     }
     void ResetClock()
     {
-        timeRemaining = 63f;
+        timeRemaining = 60f;
+        Debug.Log("clock reset");
+        //ToggleCombatTimer();
+        time_UI.text = Mathf.Round(timeRemaining).ToString();
     }
 
     //void ToggleCombatTimer()
@@ -36,8 +39,9 @@ public class TimeUI : MonoBehaviour
     void Update()
     {
 
-        //if(combatActive)
-        //{
+        if (combatActive)
+        {
+        
         timeRemaining -= Time.deltaTime;
         time_UI.text = Mathf.Round(timeRemaining).ToString();
 
@@ -54,11 +58,10 @@ public class TimeUI : MonoBehaviour
                 GameManager.Instance.EndRound(false);
             } else
             {
-                Debug.Log("TIE");
                 GameManager.Instance.EndRound(false);
             }
         }
 
-        //}
+        }
     }
 }

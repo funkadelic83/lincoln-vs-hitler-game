@@ -34,6 +34,7 @@ public class EnemyMovement : MonoBehaviour
     private void Start()
     {
         GameManager.Instance.NewRound.AddListener(ResetPosition);
+        //GameManager.Instance.EndRound.AddListener(
         ResetPosition();
     }
 

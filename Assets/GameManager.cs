@@ -21,8 +21,7 @@ public class GameManager : Singleton<GameManager>
     public Events.EventGameState OnGameStateChanged;
     public Events.NewRoundEvent NewRound;
     public Events.DeclareWinner EndGame;
-    public Events.EndRoundEvent EndCurrentRound;
-
+    
     public GameState CurrentGameState
     {
         get
@@ -41,6 +40,8 @@ public class GameManager : Singleton<GameManager>
     private float secondsBetweenRounds = 3f;
 
     public TextMeshProUGUI statusText;
+
+    public TimeUI time_UI;
 
     #endregion
 
@@ -113,6 +114,7 @@ public class GameManager : Singleton<GameManager>
 
     public void EndRound(bool isPlayerWinner)
     {
+        time_UI.combatActive = false;
         if (isPlayerWinner)
         {
             playerWins++;
@@ -120,7 +122,7 @@ public class GameManager : Singleton<GameManager>
             enemyWins++;
         }
         StartCoroutine("delayBetweenRounds");
-        EndCurrentRound.Invoke();
+        
     }
 
 }

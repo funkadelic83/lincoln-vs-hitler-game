@@ -21,6 +21,8 @@ public class PlayerMovement : MonoBehaviour
     private float freezeBetweenRoundDuration = 3f;
 
     public bool isGrounded;
+
+    public TimeUI time_UI;
     #endregion
 
     // Start is called before the first frame update
@@ -51,6 +53,8 @@ public class PlayerMovement : MonoBehaviour
     private void UnfreezePlayerMovement()
     {
         gameObject.GetComponent<PlayerMovement>().enabled = true;
+        time_UI.combatActive = true;
+
     }
 
     // Update is called once per frame

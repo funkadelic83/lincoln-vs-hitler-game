@@ -10,11 +10,9 @@ public class HealthScript : MonoBehaviour
     private bool characterDied;
     public bool is_Player;
     private HealthUI health_UI;
-    //public GameManager gameManager;
 
     private void Awake()
     {
-        //gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         animationScript = GetComponentInChildren<CharacterAnimation>();
         health_UI = GetComponent<HealthUI>();
         enemyMovement = GameObject.FindWithTag(Tags.ENEMY_TAG).GetComponent<EnemyMovement>();
@@ -27,7 +25,6 @@ public class HealthScript : MonoBehaviour
 
     public void ResetHealth()
     {
-        Debug.Log("Health Reset");
         health = 100f;
         health_UI.DisplayHealth(health);
         characterDied = false;
@@ -51,11 +48,8 @@ public class HealthScript : MonoBehaviour
             characterDied = true;
             if(is_Player)
             {
-
-                //GameObject.FindWithTag(Tags.PLAYER_TAG).GetComponent<CharacterAnimation>().enabled = false;
-               
                 //THIS IS TIGHTLY COUPLED - FIX
-                
+
                 //enemyMovement.enabled = true;
                 GameManager.Instance.EndRound(false);
             }

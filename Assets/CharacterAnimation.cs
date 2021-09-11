@@ -9,6 +9,7 @@ public class CharacterAnimation : MonoBehaviour
     private AnimatorStateInfo stateInfo;
     private Transform parentTransform;
     private bool rootMotionOn;
+    private string previousState;
 
     private void Awake()
     {
@@ -70,16 +71,49 @@ public class CharacterAnimation : MonoBehaviour
     private void OnAnimatorMove()
     {
         stateInfo = anim.GetCurrentAnimatorStateInfo(0);
+
         if(stateInfo.IsTag("Death"))
+        {
+            previousState = "Death";
+        }
+
+        if (stateInfo.IsTag("RootMotionOn") || stateInfo.IsTag("Death"))
         {
             anim.ApplyBuiltinRootMotion();
             rootMotionOn = true;
-
-        } else if (!stateInfo.IsTag("Death") && rootMotionOn)
+        }
+        else if (((!stateInfo.IsTag("RootMotionOn") || !stateInfo.IsTag("Death"))) && rootMotionOn)
         {
             rootMotionOn = false;
-            transform.position = transform.parent.position;
-            transform.rotation = transform.parent.rotation;
+            if(previousState == "Death")
+            {
+                transform.position = transform.parent.position;
+                transform.rotation = transform.parent.rotation;
+                previousState = null;
+            }
+
+        }
+
+
+    }
+
+    private void Update()
+    {
+
+
+
+        if (!rootMotionOn && ((transform.position != transform.parent.position || transform.rotation != transform.parent.rotation)))
+        {
+           //Debug.Log(gameObject.name + " " + previousState);
+
+
+            //Quickly moves the character child back to parent by using slerp
+            Vector3 parentPos = transform.parent.position;
+            Quaternion parentRot = transform.parent.rotation;
+            transform.position = Vector3.Slerp(transform.position, parentPos, 15f * Time.deltaTime);
+            transform.rotation = Quaternion.Slerp(transform.rotation, parentRot, 15f * Time.deltaTime);
+            
+
         }
     }
 

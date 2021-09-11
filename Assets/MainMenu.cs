@@ -6,10 +6,13 @@ public class MainMenu : MonoBehaviour
 {
 
     public Events.EventFadeComplete OnMainMenuFadeComplete;
+    [SerializeField] private Animation _mainMenuAnimation;
+    [SerializeField] private AnimationClip _fadeOutAnimation;
     // Start is called before the first frame update
     void Start()
     {
         GameManager.Instance.OnGameStateChanged.AddListener(HandleGameStateChanged);
+        GameManager.Instance.NewRound.AddListener(FadeOut);
     }
 
     void HandleGameStateChanged(GameManager.GameState currentState, GameManager.GameState previousState)
@@ -32,7 +35,10 @@ public class MainMenu : MonoBehaviour
 
     public void FadeOut()
     {
-        //fade out the animator
+        Debug.Log("Fade out was called");
+        _mainMenuAnimation.Stop();
+        _mainMenuAnimation.clip = _fadeOutAnimation;
+        _mainMenuAnimation.Play();
     }
 
     public void OnFadeInComplete()

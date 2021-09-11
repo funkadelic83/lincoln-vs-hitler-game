@@ -9,6 +9,11 @@ public class GameManager : Singleton<GameManager>
 {
     #region Declarations
 
+    public MainMenu mainMenu;
+    public Animation _mainMenuAnimator;
+    public AnimationClip _fadeOutAnimation;
+  
+
     public enum GameState
     {
         PREGAME,
@@ -47,8 +52,7 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
-        roundNumber = 1;
-        NewRound.Invoke();
+        _mainMenuAnimator = mainMenu.GetComponent<Animation>();
     }
 
     #region PauseLogic
@@ -88,6 +92,13 @@ public class GameManager : Singleton<GameManager>
     }
 
     #endregion
+
+    public void StartGame()
+    {
+
+        roundNumber = 1;
+        NewRound.Invoke();
+    }
 
 
     public IEnumerator delayBetweenRounds()

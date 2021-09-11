@@ -48,10 +48,7 @@ public class HealthScript : MonoBehaviour
             characterDied = true;
             if(is_Player)
             {
-                //THIS IS TIGHTLY COUPLED - FIX
-
                 gameObject.GetComponent<PlayerMovement>().enabled = false;
-                //enemyMovement.enabled = true;
                 GameManager.Instance.EndRound(false);
             }
             if(!is_Player)

@@ -44,7 +44,7 @@ public class HealthScript : MonoBehaviour
         if (health <= 0f)
         {
             animationScript.Death();
-            enemyMovement.enabled = false;
+            //enemyMovement.enabled = false;
             characterDied = true;
             if(is_Player)
             {
@@ -53,7 +53,7 @@ public class HealthScript : MonoBehaviour
             }
             if(!is_Player)
             {
-
+                //gameObject.GetComponent<PlayerMovement>().enabled = false;
                 //GameObject.FindWithTag(Tags.PLAYER_TAG).GetComponent<CharacterAnimation>().VictoryDance();
                 GameManager.Instance.EndRound(true);
             }

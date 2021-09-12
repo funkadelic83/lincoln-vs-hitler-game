@@ -29,8 +29,6 @@ public class CharacterAnimation : MonoBehaviour
     public void Play_IdleAnimation()
     {
         anim.Play(AnimationTags.IDLE_ANIMATION);
- 
-
     }
 
     public void Punch_1()

@@ -37,9 +37,9 @@ public class EnemyMovement : MonoBehaviour
     {
         TimeUI.Instance.UnfreezeCharacters.AddListener(UnfreezeEnemyMovement);
         GameManager.Instance.NewRound.AddListener(ResetPosition);
+        GameManager.Instance.FreezeEnemy.AddListener(FreezeEnemyMovement);
         attackPlayer = false;
         followPlayer = false;
-        ResetPosition();
     }
 
     private void ResetPosition()
@@ -52,16 +52,22 @@ public class EnemyMovement : MonoBehaviour
         Quaternion rot = Quaternion.Euler(0f, 180f, 0f);
         myBody.MoveRotation(rot);
 
-        gameObject.GetComponent<EnemyMovement>().enabled = false;
+        frozen = true;
     }
 
+    void FreezeEnemyMovement()
+    {
+        followPlayer = false;
+        attackPlayer = false;
+        frozen = true;
+    }
  
 
     void UnfreezeEnemyMovement()
     {
         followPlayer = true;
         attackPlayer = true;
-        gameObject.GetComponent<EnemyMovement>().enabled = true;
+        frozen = false;
     }
 
     private void FixedUpdate()
@@ -71,13 +77,15 @@ public class EnemyMovement : MonoBehaviour
 
     private void Update()
     {
-        
+        if(!frozen)
+        {
         Attack();
+        }
     }
 
     void FollowTarget()
     {
-        if (!followPlayer)
+        if (!followPlayer || frozen)
         {
             return;
         }

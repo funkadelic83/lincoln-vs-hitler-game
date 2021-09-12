@@ -12,7 +12,7 @@ public class StatusUI : MonoBehaviour
     {
         GameManager.Instance.NewRound.AddListener(ShowRoundNumber);
         GameManager.Instance.EndGame.AddListener(ShowWinner);
-        ShowRoundNumber();
+        //ShowRoundNumber();
     }
 
     void ShowRoundNumber()

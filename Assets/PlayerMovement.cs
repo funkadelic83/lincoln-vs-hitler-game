@@ -44,9 +44,11 @@ public class PlayerMovement : MonoBehaviour
     {
         player_Anim.Play_IdleAnimation();
         player_Anim.Walk(false);
+
         transform.position = startPosition.transform.position;
         Quaternion rot = Quaternion.Euler(0f, rotation_Y, 0f);
         myBody.MoveRotation(rot);
+
         isGrounded = true;
         gameObject.GetComponent<PlayerMovement>().enabled = false;
     }
@@ -54,7 +56,6 @@ public class PlayerMovement : MonoBehaviour
     private void UnfreezePlayerMovement()
     {
         gameObject.GetComponent<PlayerMovement>().enabled = true;
-        //time_UI.combatActive = true;
 
     }
 
@@ -70,7 +71,6 @@ public class PlayerMovement : MonoBehaviour
     {
         DetectMovement();
         DetectGround();
-
         RotatePlayer();
     }
 

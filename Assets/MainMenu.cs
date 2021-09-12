@@ -8,7 +8,7 @@ public class MainMenu : MonoBehaviour
     public Events.EventFadeComplete OnMainMenuFadeComplete;
     [SerializeField] private Animation _mainMenuAnimation;
     [SerializeField] private AnimationClip _fadeOutAnimation;
-    // Start is called before the first frame update
+    [SerializeField] private GameObject button;
     void Start()
     {
         GameManager.Instance.OnGameStateChanged.AddListener(HandleGameStateChanged);
@@ -19,12 +19,12 @@ public class MainMenu : MonoBehaviour
     {
         if (previousState == GameManager.GameState.PREGAME && currentState == GameManager.GameState.RUNNING)
         {
-            FadeOut();
+            //FadeOut();
         } 
         
         if (previousState == GameManager.GameState.PREGAME && currentState == GameManager.GameState.PREGAME)
         {
-            FadeIn();
+            //FadeIn();
         }
     }
 
@@ -35,7 +35,6 @@ public class MainMenu : MonoBehaviour
 
     public void FadeOut()
     {
-        Debug.Log("Fade out was called");
         _mainMenuAnimation.Stop();
         _mainMenuAnimation.clip = _fadeOutAnimation;
         _mainMenuAnimation.Play();
@@ -43,21 +42,14 @@ public class MainMenu : MonoBehaviour
 
     public void OnFadeInComplete()
     {
-        
+        //button.GetComponent<Button>().interactable = false;
         OnMainMenuFadeComplete.Invoke(false);
         UI_Manager.Instance.SetDummyCameraActive(true);
-
     }
 
     public void OnFadeOutComplete()
     {
+        //button.SetActive(false);
         OnMainMenuFadeComplete.Invoke(true);
-    }
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

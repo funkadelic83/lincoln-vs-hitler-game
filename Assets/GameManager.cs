@@ -12,6 +12,8 @@ public class GameManager : Singleton<GameManager>
     public MainMenu mainMenu;
     public Animation _mainMenuAnimator;
     public AnimationClip _fadeOutAnimation;
+
+    private bool isGameActive;
   
 
     public enum GameState
@@ -23,9 +25,9 @@ public class GameManager : Singleton<GameManager>
 
     GameState _currentGameState = GameState.PREGAME;
 
-    //public Events.UnfreezeCharactersEvent Unfreeze;
     public Events.EventGameState OnGameStateChanged;
     public Events.NewRoundEvent NewRound;
+    public Events.FreezeCombatEvent FreezeEnemy;
     public Events.StartGameEvent StartGameNow;
     public Events.DeclareWinner EndGame;
     
@@ -54,6 +56,7 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
+        isGameActive = false;
         _mainMenuAnimator = mainMenu.GetComponent<Animation>();
     }
 
@@ -75,6 +78,9 @@ public class GameManager : Singleton<GameManager>
     {
         GameState previousGameState = _currentGameState;
         _currentGameState = state;
+
+        if(isGameActive)
+        {
         switch (_currentGameState)
         {
             case GameState.PREGAME:
@@ -89,17 +95,24 @@ public class GameManager : Singleton<GameManager>
             default:
                 break;
         }
-        Debug.Log(_currentGameState);
         OnGameStateChanged.Invoke(_currentGameState, previousGameState);
+
+        }
+
     }
 
     #endregion
 
     public void StartGame()
     {
-        roundNumber = 1;
-        StartGameNow.Invoke();
-        NewRound.Invoke();
+        if (!isGameActive)
+        {
+            isGameActive = true;
+            roundNumber = 1;
+            StartGameNow.Invoke();
+            NewRound.Invoke();
+
+        }
     }
 
 
@@ -128,6 +141,7 @@ public class GameManager : Singleton<GameManager>
     public void EndRound(bool isPlayerWinner)
     {
         time_UI.combatActive = false;
+        FreezeEnemy.Invoke();
         if (isPlayerWinner)
         {
             playerWins++;

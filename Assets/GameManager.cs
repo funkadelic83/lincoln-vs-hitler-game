@@ -23,8 +23,10 @@ public class GameManager : Singleton<GameManager>
 
     GameState _currentGameState = GameState.PREGAME;
 
+    //public Events.UnfreezeCharactersEvent Unfreeze;
     public Events.EventGameState OnGameStateChanged;
     public Events.NewRoundEvent NewRound;
+    public Events.StartGameEvent StartGameNow;
     public Events.DeclareWinner EndGame;
     
     public GameState CurrentGameState
@@ -95,8 +97,8 @@ public class GameManager : Singleton<GameManager>
 
     public void StartGame()
     {
-
         roundNumber = 1;
+        StartGameNow.Invoke();
         NewRound.Invoke();
     }
 

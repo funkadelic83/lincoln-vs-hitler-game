@@ -25,7 +25,6 @@ public class PlayerMovement : MonoBehaviour
     public TimeUI time_UI;
     #endregion
 
-    // Start is called before the first frame update
 
     private void Awake()
     {
@@ -36,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        TimeUI.Instance.UnfreezeCharacters.AddListener(UnfreezePlayerMovement);
         GameManager.Instance.NewRound.AddListener(ResetPlayerPos);
         ResetPlayerPos();
     }
@@ -49,13 +49,12 @@ public class PlayerMovement : MonoBehaviour
         myBody.MoveRotation(rot);
         isGrounded = true;
         gameObject.GetComponent<PlayerMovement>().enabled = false;
-        Invoke("UnfreezePlayerMovement", freezeBetweenRoundDuration);
     }
 
     private void UnfreezePlayerMovement()
     {
         gameObject.GetComponent<PlayerMovement>().enabled = true;
-        time_UI.combatActive = true;
+        //time_UI.combatActive = true;
 
     }
 

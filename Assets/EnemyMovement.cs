@@ -18,6 +18,7 @@ public class EnemyMovement : MonoBehaviour
     private Transform parentTransform;
 
 
+    private bool frozen;
     private bool followPlayer, attackPlayer;
     public GameObject childPrefab;
 
@@ -34,28 +35,33 @@ public class EnemyMovement : MonoBehaviour
 
     private void Start()
     {
+        TimeUI.Instance.UnfreezeCharacters.AddListener(UnfreezeEnemyMovement);
         GameManager.Instance.NewRound.AddListener(ResetPosition);
+        attackPlayer = false;
+        followPlayer = false;
         ResetPosition();
     }
 
     private void ResetPosition()
     {
         enemyAnim.Play_IdleAnimation();
-        enemyMove.enabled = false;
-        attackPlayer = false;
         enemyAnim.Walk(false);
+        attackPlayer = false;
+
         transform.position = startPosition.transform.position;
         Quaternion rot = Quaternion.Euler(0f, 180f, 0f);
         myBody.MoveRotation(rot);
-        Invoke("UnfreezeEnemyMovement", freezeBetweenRoundDuration);
+
+        gameObject.GetComponent<EnemyMovement>().enabled = false;
     }
 
  
 
     void UnfreezeEnemyMovement()
     {
+        followPlayer = true;
         attackPlayer = true;
-        enemyMove.enabled = true;
+        gameObject.GetComponent<EnemyMovement>().enabled = true;
     }
 
     private void FixedUpdate()

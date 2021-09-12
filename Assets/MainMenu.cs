@@ -12,7 +12,7 @@ public class MainMenu : MonoBehaviour
     void Start()
     {
         GameManager.Instance.OnGameStateChanged.AddListener(HandleGameStateChanged);
-        GameManager.Instance.NewRound.AddListener(FadeOut);
+        GameManager.Instance.StartGameNow.AddListener(FadeOut);
     }
 
     void HandleGameStateChanged(GameManager.GameState currentState, GameManager.GameState previousState)
@@ -43,8 +43,10 @@ public class MainMenu : MonoBehaviour
 
     public void OnFadeInComplete()
     {
+        
         OnMainMenuFadeComplete.Invoke(false);
         UI_Manager.Instance.SetDummyCameraActive(true);
+
     }
 
     public void OnFadeOutComplete()

@@ -132,7 +132,6 @@ public class GameManager : Singleton<GameManager>
         }
         else
         {
-            
             NewRound.Invoke();
         }
 

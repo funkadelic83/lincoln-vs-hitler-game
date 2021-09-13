@@ -203,6 +203,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d60f55be30851ed43b4d7b30bf0ac8f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  introMusic: {fileID: 8300000, guid: 3ffcafa589a01b74e832079fc19cd22b, type: 3}
+  gameMusic: {fileID: 8300000, guid: eeee0c820c3947448be4e3833fe7f46d, type: 3}
+  victoryMusic: {fileID: 8300000, guid: b3479ed4835fdee4a8bf0991e5653380, type: 3}
+  defeatMusic: {fileID: 8300000, guid: 84ec56ddfe62e374183ebe35d909c721, type: 3}
 --- !u!82 &61808932
 AudioSource:
   m_ObjectHideFlags: 0
@@ -213,9 +217,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: bcb685b5a51280740b17880cb817a5a3, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 0.113
+  m_audioClip: {fileID: 8300000, guid: 3ffcafa589a01b74e832079fc19cd22b, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -3079,14 +3083,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Game by Mike Damanskis
-
-    Music: Disco Medusae by Kevin MacLeod
-
-    Link:
-    https://incompetech.filmmusic.io/song/3652-disco-medusae
-
-    License: https://filmmusic.io/standard-license'
+  m_text: Game by Mike Damanskis
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

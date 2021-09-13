@@ -35392,7 +35392,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.45833334
+  - time: 0.41666666
     functionName: right_Arm_Attack_On
     data: 
     objectReferenceParameter: {fileID: 0}

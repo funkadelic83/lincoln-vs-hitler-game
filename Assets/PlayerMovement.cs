@@ -18,7 +18,6 @@ public class PlayerMovement : MonoBehaviour
     private float rotation_Y = 0f;
     //private float rotation_Speed = 15f;
     private float feetDist = 0.1f;
-    private float freezeBetweenRoundDuration = 3f;
 
     public bool isGrounded;
 

@@ -6,10 +6,10 @@ public class AttackUniversal : MonoBehaviour
 {
 
     public LayerMask collisionLayer;
-    public float radius = 0.1f;
+    public float radius = 1f;
     public float damage = 2f;
 
-    public bool is_Player, is_Enemy;
+    public bool is_Player, is_Enemy, attackMissed;
     public GameObject hit_FX;
 
     private void Update()
@@ -17,13 +17,24 @@ public class AttackUniversal : MonoBehaviour
         DetectCollision();
     }
 
+    public Events.PlaySfx PlaySound;
+
     void DetectCollision()
     {
         Collider[] hit = Physics.OverlapSphere(transform.position, radius, collisionLayer);
+
+        if (hit.Length == 0)
+        {
+            attackMissed = true;
+            Debug.Log("Missed!");
+        }
     
         if (hit.Length > 0)
         {
-            if(is_Player)
+            attackMissed = false;
+            PlaySound.Invoke(SfxTags.HIT_SFX);
+
+            if (is_Player)
             {
 
                 //Vector3 hitFX_Pos = hit[0].transform.position;
@@ -37,6 +48,9 @@ public class AttackUniversal : MonoBehaviour
                 //}
                 //Instantiate(hit_FX, hitFX_Pos, Quaternion.identity);
                 //LEFT ARM AND LEG KNOCK THE ENEMY DOWN
+  
+
+
                 if (gameObject.CompareTag(Tags.LEFT_ARM_TAG) || gameObject.CompareTag(Tags.LEFT_LEG_TAG)) {
                     //Debug.Log(hit[0].name);
                     hit[0].GetComponent<HealthScript>().ApplyDamage(damage, true);
@@ -45,7 +59,8 @@ public class AttackUniversal : MonoBehaviour
                     //Debug.Log(hit[0].name);
                     hit[0].GetComponent<HealthScript>().ApplyDamage(2f * damage, false);
                 }
-            }
+            } 
+            
             if(is_Enemy)
             {
 
@@ -59,15 +74,21 @@ public class AttackUniversal : MonoBehaviour
                     //Debug.Log(hit[0].name);
                     hit[0].GetComponent<HealthScript>().ApplyDamage(2f * damage, false);
                 }
+            } 
 
-
-               // hit[0].GetComponent<HealthScript>().ApplyDamage(damage, false);
-                //Debug.Log(hit[0].name);
-            }
-            gameObject.SetActive(false);
         }
-    
+
+
+        gameObject.SetActive(false);
+
     }
 
+    private void OnDisable()
+    {
+        if (attackMissed)
+        {
+            PlaySound.Invoke(SfxTags.WHOOSH_SFX);
+        }
+    }
 
 }

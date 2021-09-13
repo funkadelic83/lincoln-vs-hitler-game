@@ -13,7 +13,6 @@ public class EnemyMovement : MonoBehaviour
     private float chase_Player_After_Attack = 1f;
     private float current_Attack_Time;
     private float default_Attack_Time = 2f;
-    private float freezeBetweenRoundDuration = 3f;
     private EnemyMovement enemyMove;
     private Transform parentTransform;
 

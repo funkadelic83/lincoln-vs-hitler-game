@@ -35,6 +35,14 @@ public class Axis
     public const string VERTICAL_AXIS = "Vertical";
 }
 
+public class SfxTags
+{
+    public const string WHOOSH_SFX = "Whoosh";
+    public const string HIT_SFX = "Hit";
+    public const string KICK_SFX = "Kick";
+    public const string FALL_SFX = "Fall";
+    public const string JUMP_SFX = "Jump";
+}
 public class Tags
 {
     public const string PLAYER_TAG = "Player";

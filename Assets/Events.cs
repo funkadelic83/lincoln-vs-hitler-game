@@ -6,6 +6,8 @@ public class Events
 
     [System.Serializable] public class StartGameEvent : UnityEvent { };
 
+    [System.Serializable] public class PlaySfx : UnityEvent<string> { };
+
     [System.Serializable] public class FreezeCombatEvent : UnityEvent { };
 
     [System.Serializable] public class UnfreezeCharactersEvent : UnityEvent { };

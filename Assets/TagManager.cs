@@ -42,6 +42,7 @@ public class SfxTags
     public const string KICK_SFX = "Kick";
     public const string FALL_SFX = "Fall";
     public const string JUMP_SFX = "Jump";
+    public const string BELL_SFX = "Bell";
 }
 public class Tags
 {

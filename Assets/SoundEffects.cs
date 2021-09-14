@@ -8,6 +8,7 @@ public class SoundEffects : MonoBehaviour
     public AudioSource sfxSource;
     public AudioClip[] whooshSfx;
     public AudioClip[] punchSfx;
+    public AudioClip roundBell;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +20,7 @@ public class SoundEffects : MonoBehaviour
         attackUniversal[5].PlaySound.AddListener(PlaySFX);
         attackUniversal[6].PlaySound.AddListener(PlaySFX);
         attackUniversal[7].PlaySound.AddListener(PlaySFX);
+        GameManager.Instance.FreezeEnemy.AddListener(RingBell);
     }
 
     void PlaySFX(string effectType)
@@ -39,9 +41,11 @@ public class SoundEffects : MonoBehaviour
 
 
     }
-    // Update is called once per frame
-    void Update()
+
+    void RingBell()
     {
-        
+        sfxSource.clip = roundBell;
+        sfxSource.Play();
     }
+
 }

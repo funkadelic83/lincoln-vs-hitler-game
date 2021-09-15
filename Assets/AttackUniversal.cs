@@ -47,16 +47,16 @@ public class AttackUniversal : MonoBehaviour
                 //}
                 //Instantiate(hit_FX, hitFX_Pos, Quaternion.identity);
                 //LEFT ARM AND LEG KNOCK THE ENEMY DOWN
-  
-
 
                 if (gameObject.CompareTag(Tags.LEFT_ARM_TAG) || gameObject.CompareTag(Tags.LEFT_LEG_TAG)) {
                     //Debug.Log(hit[0].name);
-                    hit[0].GetComponent<HealthScript>().ApplyDamage(damage, true);
+                    hit[0].GetComponent<HealthScript>().ApplyDamage(damage, false);
+
+
                 } else
                 {
                     //Debug.Log(hit[0].name);
-                    hit[0].GetComponent<HealthScript>().ApplyDamage(2f * damage, false);
+                    hit[0].GetComponent<HealthScript>().ApplyDamage(2f * damage, true);
                 }
             } 
             

@@ -17,6 +17,9 @@ public class AnimationTags
     public const string KICK_2_TRIGGER = "Kick2";
     public const string KICK_3_TRIGGER = "Kick3";
 
+    public const string GET_HIT_LEFT = "GetHitLeft";
+    public const string GET_HIT_RIGHT = "GetHitRight";
+
     public const string DEATH_TRIGGER = "Death";
     public const string KNOCKDOWN_TRIGGER = "KnockDown";
     public const string HIT_TRIGGER = "Hit";
@@ -56,4 +59,6 @@ public class Tags
     public const string RIGHT_ARM_TAG = "RightArm";
     public const string RIGHT_LEG_TAG = "RightLeg";
     public const string UNTAGGED_TAG = "Untagged";
+    public const string HEAD_TAG = "Head";
+    public const string CHEST_TAG = "ChestImpactZone";
 }

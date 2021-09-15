@@ -136,6 +136,16 @@ public class CharacterAnimation : MonoBehaviour
         anim.SetTrigger(AnimationTags.SPECIAL_MOVE_1_VICTIM);
     }
 
+    public void GetHitLeft()
+    {
+        anim.SetTrigger(AnimationTags.GET_HIT_LEFT);
+    }
+
+    public void GetHitRight()
+    {
+        anim.SetTrigger(AnimationTags.GET_HIT_RIGHT);
+    }
+
     public void VictoryDance()
     {
         anim.SetTrigger(AnimationTags.VICTORY_DANCE);

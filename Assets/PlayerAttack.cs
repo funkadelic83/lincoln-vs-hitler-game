@@ -42,10 +42,12 @@ public class PlayerAttack : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Z) || Input.GetButtonDown("Fire1"))
         {
-            if (current_ComboState == ComboState.PUNCH_3 ||
+            if (
+                //current_ComboState == ComboState.PUNCH_3 ||
                 current_ComboState == ComboState.KICK_1 ||
                 current_ComboState == ComboState.KICK_2 ||
-                current_ComboState == ComboState.KICK_3)
+                current_ComboState == ComboState.KICK_3
+                )
                 return;
             current_ComboState++;
             activateTimerToReset = true;
@@ -69,7 +71,8 @@ public class PlayerAttack : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.X) || Input.GetButtonDown("Fire2"))
         {
             if (
-                current_ComboState == ComboState.PUNCH_3 ||
+                current_ComboState == ComboState.PUNCH_3
+                ||
                 current_ComboState == ComboState.KICK_3
                 )
                 return;
@@ -79,7 +82,7 @@ public class PlayerAttack : MonoBehaviour
                 )
             {
                 current_ComboState = ComboState.KICK_1;
-            } else if (current_ComboState == ComboState.KICK_1)
+            } else if (current_ComboState == ComboState.KICK_1 || current_ComboState == ComboState.KICK_2)
             {
                 current_ComboState++;
             }

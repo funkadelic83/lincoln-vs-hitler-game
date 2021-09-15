@@ -12,6 +12,8 @@ TagManager:
   - RightArm
   - HealthUI
   - EnemyHealthUI
+  - Chest
+  - Head
   layers:
   - Default
   - TransparentFX

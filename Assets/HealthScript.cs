@@ -30,7 +30,7 @@ public class HealthScript : MonoBehaviour
         characterDied = false;
     }
 
-    public void ApplyDamage (float damage, bool knockDown)
+    public void ApplyDamage (float damage, bool hitWithRight)
     {
         if (characterDied)
         {
@@ -39,7 +39,6 @@ public class HealthScript : MonoBehaviour
 
         health -= damage;
         health_UI.DisplayHealth(health);
-
 
         if (health <= 0f)
         {
@@ -61,24 +60,38 @@ public class HealthScript : MonoBehaviour
             return;
         }
 
-    
-
-
-        if(!is_Player)
+        if (hitWithRight)
         {
-            if(knockDown)
+            //Debug.Log("Right Hook");
+            animationScript.GetHitRight();
+        } else if (!hitWithRight)
+        {
+            //Debug.Log("Left Hook");
+            animationScript.GetHitLeft();
+        }
+
+
+
+
+        if (!is_Player)
+        {
+            if(hitWithRight)
             {
-                if (Random.Range(0, 2) > 0)
-                {
-                    animationScript.KnockDown();
-                }
-                else
-                {
-                    if(Random.Range(0, 3) > 1)
-                    {
-                        animationScript.Hit();
-                    }
-                }
+                animationScript.GetHitRight();
+                //if (Random.Range(0, 2) > 0)
+                //{
+                //    animationScript.KnockDown();
+                //}
+                //else
+                //{
+                //    if(Random.Range(0, 3) > 1)
+                //    {
+                //        animationScript.Hit();
+                //    }
+                //}
+            } else
+            {
+                animationScript.GetHitLeft();
             }
         }
 

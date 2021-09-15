@@ -704,6 +704,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 1445680127398172, guid: 0081d98a777d7584a971c372a6906bff, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 1446462665482960, guid: 0081d98a777d7584a971c372a6906bff, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -3341,7 +3345,7 @@ GameObject:
   m_Icon: {fileID: 4162164826716764455, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &574697405
 Transform:
   m_ObjectHideFlags: 0

@@ -10817,7 +10817,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1923769543}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -12395,7 +12395,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1923769543}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -18094,7 +18094,7 @@ RectTransform:
   m_Children:
   - {fileID: 1858635104}
   m_Father: {fileID: 1923769543}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -23081,7 +23081,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1923769543}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -40261,7 +40261,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1200525146845636, guid: 347033fe31cd3aa499a4d0249b16a5b3, type: 3}
       propertyPath: m_Name
-      value: Cutscene_Lincoln
+      value: Main_Menu_Lincoln
       objectReference: {fileID: 0}
     - target: {fileID: 4378205623245202, guid: 347033fe31cd3aa499a4d0249b16a5b3, type: 3}
       propertyPath: m_RootOrder
@@ -41290,7 +41290,6 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 2133675246}
   - {fileID: 537196740}
   - {fileID: 817057697}
   - {fileID: 466649988}
@@ -45073,7 +45072,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 83.9
+  field of view: 60
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -45098,12 +45097,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2133675243}
-  m_LocalRotation: {x: 0.00000004470348, y: 0.7071068, z: -0.000000029802319, w: 0.70710677}
-  m_LocalPosition: {x: -632.5, y: -358.6, z: -62.538}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 6.75, y: 1.44, z: -62.405384}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
-  m_Father: {fileID: 1923769543}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!4 &2134205451 stripped
 Transform:

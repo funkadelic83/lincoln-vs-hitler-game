@@ -29,7 +29,7 @@ public class UI_Manager : Singleton<UI_Manager>
 
     public void SetDummyCameraActive(bool active)
     {
-        _dummyCamera.gameObject.SetActive(active);
+
     }
 
     // Start is called before the first frame update

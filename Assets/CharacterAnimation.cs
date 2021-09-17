@@ -20,6 +20,7 @@ public class CharacterAnimation : MonoBehaviour
     private void Start()
     {
         GameManager.Instance.NewRound.AddListener(Play_IdleAnimation);
+        GameManager.Instance.EndGame.AddListener(VictoryDance);
     }
     public void Walk(bool move)
     {
@@ -146,9 +147,23 @@ public class CharacterAnimation : MonoBehaviour
         anim.SetTrigger(AnimationTags.GET_HIT_RIGHT);
     }
 
-    public void VictoryDance()
+    public void VictoryDance(string winner)
     {
-        anim.SetTrigger(AnimationTags.VICTORY_DANCE);
+        if (winner == "Player")
+        {
+            if (transform.parent.name == "Player")
+            {
+                anim.SetTrigger(AnimationTags.VICTORY_DANCE);
+            }
+
+        }
+        else if (winner == "Enemy")
+        {
+            if (transform.parent.name == "Enemy")
+            {
+                anim.SetTrigger(AnimationTags.VICTORY_DANCE);
+            }
+        }
     }
 
     public void HandleUngrounded()

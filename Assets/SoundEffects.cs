@@ -20,7 +20,7 @@ public class SoundEffects : MonoBehaviour
         attackUniversal[5].PlaySound.AddListener(PlaySFX);
         attackUniversal[6].PlaySound.AddListener(PlaySFX);
         attackUniversal[7].PlaySound.AddListener(PlaySFX);
-        GameManager.Instance.FreezeEnemy.AddListener(RingBell);
+        GameManager.Instance.FreezeCharacters.AddListener(RingBell);
     }
 
     void PlaySFX(string effectType)

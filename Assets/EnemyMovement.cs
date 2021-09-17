@@ -36,13 +36,15 @@ public class EnemyMovement : MonoBehaviour
     {
         TimeUI.Instance.UnfreezeCharacters.AddListener(UnfreezeEnemyMovement);
         GameManager.Instance.NewRound.AddListener(ResetPosition);
-        GameManager.Instance.FreezeEnemy.AddListener(FreezeEnemyMovement);
+        GameManager.Instance.FreezeCharacters.AddListener(FreezeEnemyMovement);
         attackPlayer = false;
         followPlayer = false;
     }
 
     private void ResetPosition()
     {
+        childPrefab.transform.position = transform.position;
+        childPrefab.transform.rotation = transform.rotation;
         enemyAnim.Play_IdleAnimation();
         enemyAnim.Walk(false);
         attackPlayer = false;

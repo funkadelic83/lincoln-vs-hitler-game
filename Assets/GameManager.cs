@@ -27,7 +27,7 @@ public class GameManager : Singleton<GameManager>
 
     public Events.EventGameState OnGameStateChanged;
     public Events.NewRoundEvent NewRound;
-    public Events.FreezeCombatEvent FreezeEnemy;
+    public Events.FreezeCombatEvent FreezeCharacters;
     public Events.StartGameEvent StartGameNow;
     public Events.DeclareWinner EndGame;
     
@@ -127,6 +127,7 @@ public class GameManager : Singleton<GameManager>
         roundNumber = 1;
         NewRound.Invoke();
         mainMenu.OnFadeOutComplete();
+        //Music.PlayMusic();
     }
 
 
@@ -159,7 +160,7 @@ public class GameManager : Singleton<GameManager>
     public void EndRound(bool isPlayerWinner)
     {
         time_UI.combatActive = false;
-        FreezeEnemy.Invoke();
+        FreezeCharacters.Invoke();
         if (isPlayerWinner)
         {
             playerWins++;

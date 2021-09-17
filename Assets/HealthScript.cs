@@ -47,13 +47,10 @@ public class HealthScript : MonoBehaviour
             characterDied = true;
             if(is_Player)
             {
-                gameObject.GetComponent<PlayerMovement>().enabled = false;
                 GameManager.Instance.EndRound(false);
             }
             if(!is_Player)
             {
-                //gameObject.GetComponent<PlayerMovement>().enabled = false;
-                //GameObject.FindWithTag(Tags.PLAYER_TAG).GetComponent<CharacterAnimation>().VictoryDance();
                 GameManager.Instance.EndRound(true);
             }
 

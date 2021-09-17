@@ -35,12 +35,15 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         TimeUI.Instance.UnfreezeCharacters.AddListener(UnfreezePlayerMovement);
+        GameManager.Instance.FreezeCharacters.AddListener(FreezePlayerMovement);
         GameManager.Instance.NewRound.AddListener(ResetPlayerPos);
         ResetPlayerPos();
     }
     
     private void ResetPlayerPos()
     {
+        childPrefab.transform.position = transform.position;
+        childPrefab.transform.rotation = transform.rotation;
         player_Anim.Play_IdleAnimation();
         player_Anim.Walk(false);
 
@@ -50,11 +53,20 @@ public class PlayerMovement : MonoBehaviour
 
         isGrounded = true;
         gameObject.GetComponent<PlayerMovement>().enabled = false;
+        gameObject.GetComponent<PlayerAttack>().enabled = false;
+    }
+
+    private void FreezePlayerMovement()
+    {
+        gameObject.GetComponent<PlayerMovement>().enabled = false;
+        gameObject.GetComponent<PlayerAttack>().enabled = false;
+
     }
 
     private void UnfreezePlayerMovement()
     {
         gameObject.GetComponent<PlayerMovement>().enabled = true;
+        gameObject.GetComponent<PlayerAttack>().enabled = true;
 
     }
 

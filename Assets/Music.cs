@@ -14,6 +14,7 @@ public class Music : MonoBehaviour
     void Start()
     {
         GameManager.Instance.StartGameNow.AddListener(PlayMusic);
+        GameManager.Instance.NewRound.AddListener(PlayMusic);
         musicSource = GetComponent<AudioSource>();
         musicSource.clip = introMusic;
         musicSource.time = 24f;
@@ -23,10 +24,13 @@ public class Music : MonoBehaviour
 
     void PlayMusic()
     {
+        if(musicSource.clip != gameMusic)
+        {
         musicSource.Stop();
         musicSource.clip = gameMusic;
         musicSource.time = 1f;
         musicSource.Play();
+        }
     }
 
     void StopMusic(string winner)

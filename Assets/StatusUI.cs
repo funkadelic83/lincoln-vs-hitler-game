@@ -6,12 +6,14 @@ using TMPro;
 public class StatusUI : MonoBehaviour
 {
     public TextMeshProUGUI statusText;
+    public GameObject gameOverMenu;
 
     // Start is called before the first frame update
     void Start()
     {
         GameManager.Instance.NewRound.AddListener(ShowRoundNumber);
         GameManager.Instance.EndGame.AddListener(ShowWinner);
+            
         //ShowRoundNumber();
     }
 
@@ -21,6 +23,7 @@ public class StatusUI : MonoBehaviour
         statusText.enabled = true;
         Invoke("ShowFightText", 2f);
     }
+
 
     void ShowFightText()
     {
@@ -37,6 +40,15 @@ public class StatusUI : MonoBehaviour
     {
         statusText.text = winner + " Wins.";
         statusText.enabled = true;
+        //GameManager.Instance.isGameActive = false;
+        StartCoroutine("ShowEndMenu");
+    }
+
+    private IEnumerator ShowEndMenu()
+    {
+        
+        yield return new WaitForSeconds(7);
+        gameOverMenu.SetActive(true);
     }
 
 }

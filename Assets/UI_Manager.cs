@@ -5,7 +5,7 @@ using UnityEngine;
 public class UI_Manager : Singleton<UI_Manager>
 {
     [SerializeField] private MainMenu _mainMenu;
-    [SerializeField] private PauseMenu _pauseMenu;
+    [SerializeField] private GameObject _pauseMenu;
     [SerializeField] private Camera _dummyCamera;
     //[SerializeField] private SceneFader _fader;
 

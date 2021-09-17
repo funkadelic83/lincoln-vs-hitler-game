@@ -62,11 +62,9 @@ public class HealthScript : MonoBehaviour
 
         if (hitWithRight)
         {
-            //Debug.Log("Right Hook");
             animationScript.GetHitRight();
         } else if (!hitWithRight)
         {
-            //Debug.Log("Left Hook");
             animationScript.GetHitLeft();
         }
 
@@ -78,17 +76,6 @@ public class HealthScript : MonoBehaviour
             if(hitWithRight)
             {
                 animationScript.GetHitRight();
-                //if (Random.Range(0, 2) > 0)
-                //{
-                //    animationScript.KnockDown();
-                //}
-                //else
-                //{
-                //    if(Random.Range(0, 3) > 1)
-                //    {
-                //        animationScript.Hit();
-                //    }
-                //}
             } else
             {
                 animationScript.GetHitLeft();

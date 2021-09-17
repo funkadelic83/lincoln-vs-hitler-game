@@ -13,7 +13,7 @@ public class GameManager : Singleton<GameManager>
     public Animation _mainMenuAnimator;
     public AnimationClip _fadeOutAnimation;
 
-    private bool isGameActive;
+    public bool isGameActive;
   
 
     public enum GameState
@@ -65,6 +65,10 @@ public class GameManager : Singleton<GameManager>
     {
         if(Input.GetKeyDown(KeyCode.Escape))
         {
+            Application.Quit();
+        }
+        if(Input.GetKeyDown(KeyCode.P))
+        {
             TogglePause();
         }
     }
@@ -115,6 +119,16 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    public void NewGame()
+    {
+        isGameActive = true;
+        playerWins = 0;
+        enemyWins = 0;
+        roundNumber = 1;
+        NewRound.Invoke();
+        mainMenu.OnFadeOutComplete();
+    }
+
 
     public IEnumerator delayBetweenRounds()
     {
@@ -135,6 +149,11 @@ public class GameManager : Singleton<GameManager>
             NewRound.Invoke();
         }
 
+    }
+    
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 
     public void EndRound(bool isPlayerWinner)

@@ -9934,16 +9934,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.4166667
-        value: 0.59281796
-        inSlope: -2.5901132
-        outSlope: -2.5901132
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 0.45833334
+        time: 0.41666666
         value: 0.43056187
         inSlope: -3.3253155
         outSlope: -3.3253155
@@ -34620,16 +34611,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.4166667
-        value: 0.59281796
-        inSlope: -2.5901132
-        outSlope: -2.5901132
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 0.45833334
+        time: 0.41666666
         value: 0.43056187
         inSlope: -3.3253155
         outSlope: -3.3253155
@@ -48467,14 +48449,14 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.875
+  - time: 1.125
     functionName: right_Leg_Attack_Off
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.9166667
+  - time: 1.1666666
     functionName: untag_Left_Leg
     data: 
     objectReferenceParameter: {fileID: 0}

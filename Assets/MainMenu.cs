@@ -30,7 +30,7 @@ public class MainMenu : MonoBehaviour
 
     public void FadeIn()
     {
-        // fade in the animator
+
     }
 
     public void FadeOut()

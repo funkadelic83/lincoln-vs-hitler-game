@@ -12,7 +12,7 @@ public class AttackUniversal : MonoBehaviour
     public bool is_Player, is_Enemy, attackMissed;
     public GameObject hit_FX;
 
-    private void Update()
+    private void FixedUpdate()
     {
         DetectCollision();
     }
@@ -46,18 +46,18 @@ public class AttackUniversal : MonoBehaviour
                 //    hitFX_Pos.x -= 0.3f;
                 //}
                 //Instantiate(hit_FX, hitFX_Pos, Quaternion.identity);
-                //LEFT ARM AND LEG KNOCK THE ENEMY DOWN
 
-                if (gameObject.CompareTag(Tags.LEFT_ARM_TAG) || gameObject.CompareTag(Tags.LEFT_LEG_TAG)) {
-                    //Debug.Log(hit[0].name);
-                    hit[0].GetComponent<HealthScript>().ApplyDamage(damage, false);
-
-
-                } else
+                if (gameObject.CompareTag(Tags.LEFT_ARM_TAG) || gameObject.CompareTag(Tags.LEFT_LEG_TAG))
                 {
-                    //Debug.Log(hit[0].name);
-                    hit[0].GetComponent<HealthScript>().ApplyDamage(2f * damage, true);
+                    hit[0].gameObject.GetComponent<HealthScript>().ApplyDamage(damage, "leftSide");
                 }
+                
+                if (gameObject.CompareTag(Tags.RIGHT_ARM_TAG) || gameObject.CompareTag(Tags.RIGHT_LEG_TAG))
+                {
+                    hit[0].gameObject.GetComponent<HealthScript>().ApplyDamage(damage, "rightSide");
+                }
+
+                gameObject.SetActive(false);
             } 
             
             if(is_Enemy)
@@ -65,18 +65,22 @@ public class AttackUniversal : MonoBehaviour
 
                 if (gameObject.CompareTag(Tags.LEFT_ARM_TAG) || gameObject.CompareTag(Tags.LEFT_LEG_TAG))
                 {
-                    hit[0].GetComponent<HealthScript>().ApplyDamage(damage, false);
+                    hit[0].GetComponent<HealthScript>().ApplyDamage(damage, "leftSide");
+
                 }
                 else
                 {
-                    hit[0].GetComponent<HealthScript>().ApplyDamage(2f * damage, true);
+                    hit[0].GetComponent<HealthScript>().ApplyDamage(2f * damage, "rightSide");
                 }
+
+                gameObject.SetActive(false);
+
             } 
 
         }
 
 
-        gameObject.SetActive(false);
+
 
     }
 

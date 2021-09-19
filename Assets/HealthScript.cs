@@ -30,7 +30,7 @@ public class HealthScript : MonoBehaviour
         characterDied = false;
     }
 
-    public void ApplyDamage (float damage, bool hitWithRight)
+    public void ApplyDamage (float damage, string whichSide)
     {
         if (characterDied)
         {
@@ -57,10 +57,12 @@ public class HealthScript : MonoBehaviour
             return;
         }
 
-        if (hitWithRight)
+        if (whichSide == "rightSide")
         {
             animationScript.GetHitRight();
-        } else if (!hitWithRight)
+        }
+
+        if (whichSide == "leftSide")
         {
             animationScript.GetHitLeft();
         }
@@ -70,10 +72,12 @@ public class HealthScript : MonoBehaviour
 
         if (!is_Player)
         {
-            if(hitWithRight)
+            if(whichSide == "rightSide")
             {
                 animationScript.GetHitRight();
-            } else
+            }
+            
+            if(whichSide == "leftSide")
             {
                 animationScript.GetHitLeft();
             }

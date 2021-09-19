@@ -103,10 +103,6 @@ public class CharacterAnimation : MonoBehaviour
 
         if (!rootMotionOn && ((transform.position != transform.parent.position || transform.rotation != transform.parent.rotation)))
         {
-           //Debug.Log(gameObject.name + " " + previousState);
-
-
-            //Quickly moves the character child back to parent by using slerp
             Vector3 parentPos = transform.parent.position;
             Quaternion parentRot = transform.parent.rotation;
             transform.position = Vector3.Slerp(transform.position, parentPos, 15f * Time.deltaTime);

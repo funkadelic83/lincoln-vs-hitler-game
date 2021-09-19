@@ -5,8 +5,6 @@ using UnityEngine;
 public class CharacterAnimation_Delegate : MonoBehaviour
 {
     public GameObject left_Arm_Attack_Point, right_Arm_Attack_Point, left_Leg_Attack_Point, right_Leg_Attack_Point;
-    //Add this when I have a knockdown animation to use
-    //public float stand_Up_Timer = 2f;
 
     private CharacterAnimation animationScript;
     private AudioSource audioSource;
@@ -33,22 +31,37 @@ public class CharacterAnimation_Delegate : MonoBehaviour
 
     void Left_Arm_Attack_On()
     {
-        left_Arm_Attack_Point.SetActive(true);
+        if (!left_Arm_Attack_Point.activeInHierarchy)
+        {
+            left_Arm_Attack_Point.SetActive(true);
+        }
     }
 
     void Left_Leg_Attack_On()
     {
-        left_Leg_Attack_Point.SetActive(true);
+        if(!left_Leg_Attack_Point.activeInHierarchy)
+        {
+            Debug.Log("Left Leg Attack Point Activated");
+            left_Leg_Attack_Point.SetActive(true);
+        }
     }
 
     void right_Arm_Attack_On()
     {
+        if(!right_Arm_Attack_Point.activeInHierarchy)
+        {
         right_Arm_Attack_Point.SetActive(true);
+
+        }
     }
 
     void right_Leg_Attack_On()
     {
+        if(!right_Leg_Attack_Point.activeInHierarchy) 
+        {
         right_Leg_Attack_Point.SetActive(true);
+
+        }
     }
 
     void Left_Arm_Attack_Off()
@@ -70,7 +83,7 @@ public class CharacterAnimation_Delegate : MonoBehaviour
 
     void right_Arm_Attack_Off()
     {
-        if (left_Arm_Attack_Point.activeInHierarchy)
+        if (right_Arm_Attack_Point.activeInHierarchy)
         {
             right_Arm_Attack_Point.SetActive(false);
         }
@@ -78,7 +91,7 @@ public class CharacterAnimation_Delegate : MonoBehaviour
 
     void right_Leg_Attack_Off()
     {
-        if (left_Arm_Attack_Point.activeInHierarchy)
+        if (right_Leg_Attack_Point.activeInHierarchy)
         {
             right_Leg_Attack_Point.SetActive(false);
         }
@@ -116,7 +129,7 @@ public class CharacterAnimation_Delegate : MonoBehaviour
 
     void tag_Left_Leg()
     {
-        right_Leg_Attack_Point.tag = Tags.LEFT_LEG_TAG;
+        left_Leg_Attack_Point.tag = Tags.LEFT_LEG_TAG;
     }
 
     void untag_Left_Leg()

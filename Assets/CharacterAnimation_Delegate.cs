@@ -41,7 +41,6 @@ public class CharacterAnimation_Delegate : MonoBehaviour
     {
         if(!left_Leg_Attack_Point.activeInHierarchy)
         {
-            Debug.Log("Left Leg Attack Point Activated");
             left_Leg_Attack_Point.SetActive(true);
         }
     }
